@@ -23,7 +23,7 @@ pip install magika
 ### From Source
 
 ```bash
-gyour-org/magika.git
+git clone https://github.com/your-org/magika.git
 cd magika
 pip install -e python/
 ```
