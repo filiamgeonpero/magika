@@ -83,6 +83,8 @@ pytest python/tests/
 - The `--json` flag is especially handy when piping output into `jq`.
 - Useful one-liner for batch auditing: `find . -type f | xargs magika --json | jq 'select(.result.output.score < 0.5)'` to surface low-confidence detections.
 - I keep a local alias: `alias ftype='magika --json'` in my shell config.
+- Another handy alias for recursive audits: `alias faudit='magika --json --recursive'`.
+- To list only high-confidence results: `find . -type f | xargs magika --json | jq 'select(.result.output.score >= 0.9)'`
 
 ## Contributing
 
