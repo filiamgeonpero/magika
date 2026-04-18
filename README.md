@@ -23,7 +23,7 @@ pip install magika
 ### From Source
 
 ```bash
-git clone https://github.com/your-org/magika.git
+gyour-org/magika.git
 cd magika
 pip install -e python/
 ```
@@ -62,7 +62,7 @@ docker run --rm -v $(pwd):/data magika /data/yourfile
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.10+
 - Rust (for Rust bindings)
 
 ### Setup
