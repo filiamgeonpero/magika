@@ -81,6 +81,8 @@ pytest python/tests/
 
 - I primarily use this for quickly auditing uploaded files in small scripts.
 - The `--json` flag is especially handy when piping output into `jq`.
+- Useful one-liner for batch auditing: `find . -type f | xargs magika --json | jq 'select(.result.output.score < 0.5)'` to surface low-confidence detections.
+- I keep a local alias: `alias ftype='magika --json'` in my shell config.
 
 ## Contributing
 
