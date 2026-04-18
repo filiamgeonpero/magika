@@ -38,8 +38,10 @@ from magika import Magika
 m = Magika()
 result = m.identify_path("path/to/file")
 print(result.output.ct_label)  # e.g. "python"
-print(result.output.score)     # confidence score
+print(result.output.score)     # confidence score (0.0 to 1.0)
 ```
+
+> **Note:** A score above ~0.9 generally indicates high confidence. Scores below 0.5 suggest the file type is ambiguous or unknown.
 
 ### CLI
 
