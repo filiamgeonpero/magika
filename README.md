@@ -77,6 +77,11 @@ pip install -e "python/[dev]"
 pytest python/tests/
 ```
 
+## Personal Notes
+
+- I primarily use this for quickly auditing uploaded files in small scripts.
+- The `--json` flag is especially handy when piping output into `jq`.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
