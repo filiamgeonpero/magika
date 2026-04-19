@@ -86,6 +86,7 @@ pytest python/tests/
 - Another handy alias for recursive audits: `alias faudit='magika --json --recursive'`.
 - To list only high-confidence results: `find . -type f | xargs magika --json | jq 'select(.result.output.score >= 0.9)'`
 - Tip: pipe results through `jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")'` for a clean TSV summary.
+- Tip: use `magika --label path/to/file` when you only need the content type label and want cleaner output without the full JSON.
 
 ## Contributing
 
