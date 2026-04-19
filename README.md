@@ -89,6 +89,7 @@ pytest python/tests/
 - Tip: use `magika --label path/to/file` when you only need the content type label and want cleaner output without the full JSON.
 - Tip: for a quick sanity check on a single file, `magika --json file | jq '{type: .result.output.ct_label, score: .result.output.score}'` gives a compact summary.
 - Tip: when processing a large directory, `magika --json --recursive dir/ 2>/dev/null` suppresses permission errors that would otherwise clutter the output.
+- Tip: to count detections by type across a directory, `magika --json --recursive dir/ 2>/dev/null | jq -r '.result.output.ct_label' | sort | uniq -c | sort -rn` gives a quick frequency breakdown.
 
 ## Contributing
 
