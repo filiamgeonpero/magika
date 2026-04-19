@@ -90,14 +90,5 @@ pytest python/tests/
 - Tip: for a quick sanity check on a single file, `magika --json file | jq '{type: .result.output.ct_label, score: .result.output.score}'` gives a compact summary.
 - Tip: when processing a large directory, `magika --json --recursive dir/ 2>/dev/null` suppresses permission errors that would otherwise clutter the output.
 - Tip: to count detections by type across a directory, `magika --json --recursive dir/ 2>/dev/null | jq -r '.result.output.ct_label' | sort | uniq -c | sort -rn` gives a quick frequency breakdown.
-- Tip: save TSV output to a file for later diffing: `magika --json --recursive dir/ 2>/dev/null | jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")' > audit_$(date +%Y%m%d).tsv` — handy for tracking changes over time.
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-Please report misdetections or request new content types via [GitHub Issues](https://github.com/your-org/magika/issues).
-
-## License
-
-Apache 2.0 — see [LICENSE](LICENSE)
+- Tip: save TSV output to a file for later diffing: `magika --json --recursive dir/ 2>/dev/null | jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")' > audit_$(date +%Y%m%d).tsv` — handy for tracking changes between audits.
+- Tip: compare two audit snapshots with `diff audit_20240101.tsv audit_20240201.tsv` to spot files whose detected type changed between runs — useful for catching unexpected modifications.
