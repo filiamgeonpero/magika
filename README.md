@@ -87,8 +87,8 @@ pytest python/tests/
 - To list only high-confidence results: `find . -type f | xargs magika --json | jq 'select(.result.output.score >= 0.9)'`
 - Tip: pipe results through `jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")'` for a clean TSV summary.
 - Tip: use `magika --label path/to/file` when you only need the content type label and want cleaner output without the full JSON.
+- Tip: use `magika --mime path/to/file` to get the MIME type directly (e.g. `text/x-python`) — useful when you need to set Content-Type headers or integrate with tools that expect MIME types.
 - Tip: for a quick sanity check on a single file, `magika --json file | jq '{type: .result.output.ct_label, score: .result.output.score}'` gives a compact summary.
 - Tip: when processing a large directory, `magika --json --recursive dir/ 2>/dev/null` suppresses permission errors that would otherwise clutter the output.
 - Tip: to count detections by type across a directory, `magika --json --recursive dir/ 2>/dev/null | jq -r '.result.output.ct_label' | sort | uniq -c | sort -rn` gives a quick frequency breakdown.
-- Tip: save TSV output to a file for later diffing: `magika --json --recursive dir/ 2>/dev/null | jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")' > audit_$(date +%Y%m%d).tsv` — handy for tracking changes between audits.
-- Tip: compare two audit snapshots with `diff audit_20240101.tsv audit_20240201.tsv` to spot files whose detected type changed between runs — useful for catching unexpected modifications.
+- Tip: save TSV output to a file for later diffing: `magika --json --recursive dir/ 2>/dev/null | jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")' > audit_$(date +%Y%m%d).tsv` — handy for trackin
