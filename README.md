@@ -87,6 +87,7 @@ pytest python/tests/
 - To list only high-confidence results: `find . -type f | xargs magika --json | jq 'select(.result.output.score >= 0.9)'`
 - Tip: pipe results through `jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")'` for a clean TSV summary.
 - Tip: use `magika --label path/to/file` when you only need the content type label and want cleaner output without the full JSON.
+- Tip: for a quick sanity check on a single file, `magika --json file | jq '{type: .result.output.ct_label, score: .result.output.score}'` gives a compact summary.
 
 ## Contributing
 
