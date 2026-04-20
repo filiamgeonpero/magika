@@ -92,4 +92,4 @@ pytest python/tests/
 - Tip: when processing a large directory, `magika --json --recursive dir/ 2>/dev/null` suppresses permission errors that would otherwise clutter the output.
 - Tip: to count detections by type across a directory, `magika --json --recursive dir/ 2>/dev/null | jq -r '.result.output.ct_label' | sort | uniq -c | sort -rn` gives a quick frequency breakdown.
 - Tip: save TSV output to a file for later review: `magika --json --recursive dir/ 2>/dev/null | jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")' > audit.tsv`
-- Tip: on macOS, `xargs` has a lower default argument limit — use `xargs -S 131072 magika --json` if you hit "argument list too long" errors with large file sets.
+- Tip: combine with `grep` to filter for specific types before piping to `jq` — can be faster than a `jq select` on very large outputs.
