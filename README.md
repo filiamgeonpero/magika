@@ -92,4 +92,3 @@ pytest python/tests/
 - Tip: when processing a large directory, `magika --json --recursive dir/ 2>/dev/null` suppresses permission errors that would otherwise clutter the output.
 - Tip: to count detections by type across a directory, `magika --json --recursive dir/ 2>/dev/null | jq -r '.result.output.ct_label' | sort | uniq -c | sort -rn` gives a quick frequency breakdown.
 - Tip: save TSV output to a file for later review: `magika --json --recursive dir/ 2>/dev/null | jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")' > audit.tsv`
-- Tip: to quickly filter results to a specific type (e.g. only Python files), `magika --json --recursive dir/ 2>/dev/null | jq -r 'select(.result.output.ct_label == "python") | .path'` is handy.
