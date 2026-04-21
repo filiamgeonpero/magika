@@ -85,11 +85,11 @@ pytest python/tests/
 - I keep a local alias: `alias ftype='magika --json'` in my shell config.
 - Another handy alias for recursive audits: `alias faudit='magika --json --recursive'`.
 - To list only high-confidence results: `find . -type f | xargs magika --json | jq 'select(.result.output.score >= 0.9)'`
-- Tip: pipe results through `jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")'` for a clean TSV summary.
+- Tip: pipe results through `jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")' ` for a clean TSV summary.
 - Tip: use `magika --label path/to/file` when you only need the content type label and want cleaner output without the full JSON.
 - Tip: use `magika --mime path/to/file` to get the MIME type directly (e.g. `text/x-python`) — useful when you need to set Content-Type headers or integrate with tools that expect MIME types.
 - Tip: for a quick sanity check on a single file, `magika --json file | jq '{type: .result.output.ct_label, score: .result.output.score}'` gives a compact summary.
 - Tip: when processing a large directory, `magika --json --recursive dir/ 2>/dev/null` suppresses permission errors that would otherwise clutter the output.
 - Tip: to count detections by type across a directory, `magika --json --recursive dir/ 2>/dev/null | jq -r '.result.output.ct_label' | sort | uniq -c | sort -rn` gives a quick frequency breakdown.
 - Tip: save TSV output to a file for later review: `magika --json --recursive dir/ 2>/dev/null | jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")' > audit.tsv`
-- Tip: combine with `grep` to filter for specific types before piping to `jq` — can be faster than a `jq select` on very large outputs.
+- Tip: to filter the saved TSV for a specific type (e.g. only Python files): `awk -F'\t' '$2 == "python"' audit.tsv`
