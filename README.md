@@ -91,5 +91,5 @@ pytest python/tests/
 - Tip: for a quick sanity check on a single file, `magika --json file | jq '{type: .result.output.ct_label, score: .result.output.score}'` gives a compact summary.
 - Tip: when processing a large directory, `magika --json --recursive dir/ 2>/dev/null` suppresses permission errors that would otherwise clutter the output.
 - Tip: to count detections by type across a directory, `magika --json --recursive dir/ 2>/dev/null | jq -r '.result.output.ct_label' | sort | uniq -c | sort -rn` gives a quick frequency breakdown.
-- Tip: save TSV output to a file for later review: `magika --json --recursive dir/ 2>/dev/null | jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")' > audit.tsv`
-- Tip: to filter the saved TSV for a specific type (e.g. only Python files): `awk -F'\t' '$2 == "python"' audit.tsv`
+- Tip: save TSV output to a file for later: `magika --json --recursive dir/ 2>/dev/null | jq -r '[.path, .result.output.ct_label, (.result.output.score | tostring)] | join("\t")' > audit.tsv` — handy for sharing results or diffing against a previous run.
+- Tip: I noticed `--recursive` can be slow on very large trees; narrowing with `find . -type f -size -10M | xargs magika --json` to skip large binaries speeds things up considerably.
